@@ -1,15 +1,14 @@
 //import images
 import React from 'react';
 import api from '../../src/utils/Api'
-// import avatarImg from '../images/avatar.jpg';
 import editImg from '../images/icon-edit.svg';
 import addImg from '../images/icon-add.svg';
 import Card from './Card';
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onImagePopup, onCardClick}) {
-  const [userName, setUserName] = React.useState([])
-  const [userDescription, setUserDescription] = React.useState([])
-  const [userAvatar, setUserAvatar] = React.useState([])
+  const [userName, setUserName] = React.useState('')
+  const [userDescription, setUserDescription] = React.useState('')
+  const [userAvatar, setUserAvatar] = React.useState('')
   const [cards, setCards] = React.useState([])
 
   React.useEffect(() => {

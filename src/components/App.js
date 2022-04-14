@@ -11,7 +11,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isImageCardPopupOpen, setImageCardPopupOpen] = React.useState(false);
+  const [isImageCardPopupOpen, setIsImageCardPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({name: '', link: ''});
 
   function handleCardClick(card) {
@@ -27,13 +27,13 @@ function App() {
     setIsEditAvatarPopupOpen(true)
   }
   function handleImageCardClick() {
-    setImageCardPopupOpen(true)
+    setIsImageCardPopupOpen(true)
   }
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
-    setImageCardPopupOpen(false)
+    setIsImageCardPopupOpen(false)
     setSelectedCard({name: '', link: ''})
   }
   
@@ -42,44 +42,37 @@ function App() {
       <Header />
       <Main onCardClick={handleCardClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onImagePopup={handleImageCardClick} />
       <Footer />
-      <PopupWithForm title={'Редактировать профиль'} name={'edit'} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+      <PopupWithForm buttonText='Сохранить' title='Редактировать профиль' name='edit' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
         <input id="name" type="text" name="name" placeholder="Имя" className="popup__input popup__input_string_name" required />
         <span id="name-error" className="popup__error"></span>
         <input id="profession" type="text" name="about" placeholder="Работа" className="popup__input popup__input_string_jop" required />
         <span id="profession-error" className="popup__error"></span>
-        <button type="submit" className="popup__save-button">Сохранить</button>
       </PopupWithForm>
-      <PopupWithForm title={'Новое место'} name={'card'} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+      <PopupWithForm buttonText='Отправить' title='Новое место' name='card' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
         <input id="card-name" type="text" name="name" placeholder="Название места" className="popup__input popup__input_card_name" required />
         <span id="card-name-error" className="popup__error"></span>
         <input id="cardUrl" type="url" name="link" placeholder="Ссылка на картинку" className="popup__input popup__input_card_url" required />
         <span id="cardUrl-error" className="popup__error"></span>
-        <button type="submit" className="popup__save-button">Отправить</button>
       </PopupWithForm>
-      <PopupWithForm title={'Обновить аватар'} name={'edit-avatar'} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+      <PopupWithForm buttonText='Отправить' title='Обновить аватар' name='edit-avatar' isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
         <input id="avatar" type="url" name="link" placeholder="Ссылка на картинку" className="popup__input popup__input_avatar_url" required />
         <span id="avatar-error" className="popup__error"></span>
-        <button type="submit" className="popup__save-button">Отправить</button>
       </PopupWithForm>
-      <PopupWithForm title={'Вы уверены?'} name={'delete'}>
-        <button button type="submit" className="popup__save-button">Да</button>
-      </PopupWithForm>
+      <PopupWithForm buttonText='Да' title='Вы уверены?' name='delete' />
 
       <ImagePopup card={selectedCard} isOpen={isImageCardPopupOpen} onClose={closeAllPopups} />
 
-      <template className="template">
-        <article className="element">
-          <button className="element__delete"></button>
-          <img src="." alt="нет картинки" className="element__photo" />
-          <div className="element__text">
-            <h2 className="element__title">Название</h2>
-            <div>
-              <button type="button" className="element__heart"></button><br />
-              <span className="element__heart-count"></span>
-            </div>
+      <article className="element">
+        <button className="element__delete"></button>
+        <img src="." alt="нет картинки" className="element__photo" />
+        <div className="element__text">
+          <h2 className="element__title">Название</h2>
+          <div>
+            <button type="button" className="element__heart"></button><br />
+            <span className="element__heart-count"></span>
           </div>
-        </article>
-      </template>
+        </div>
+      </article>
     </>
   );
 }
