@@ -61,18 +61,6 @@ function App() {
       <PopupWithForm buttonText='Да' title='Вы уверены?' name='delete' />
 
       <ImagePopup card={selectedCard} isOpen={isImageCardPopupOpen} onClose={closeAllPopups} />
-
-      <article className="element">
-        <button className="element__delete"></button>
-        <img src="." alt="нет картинки" className="element__photo" />
-        <div className="element__text">
-          <h2 className="element__title">Название</h2>
-          <div>
-            <button type="button" className="element__heart"></button><br />
-            <span className="element__heart-count"></span>
-          </div>
-        </div>
-      </article>
     </>
   );
 }
