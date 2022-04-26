@@ -66,26 +66,16 @@ class Api {
         .then(onError)
     }
 
-    deleteLike(id) { // удалить карточку метотд DELETE
+    changeLikeCardStatus(id, isLiked) { // добавить лайк метотд PUT
       return fetch(
         `${this._url}cards/${id}/likes`, 
         { 
-          method: 'DELETE',
+          method: isLiked ? 'PUT' : 'DELETE',
           headers: this._headers,
         })
         .then(onError)
     }
-
-    addLike(id) { // удалить карточку метотд DELETE
-      return fetch(
-        `${this._url}cards/${id}/likes`, 
-        { 
-          method: 'PUT',
-          headers: this._headers,
-        })
-        .then(onError)
-    }
-
+    
     setUserAvatar(avatar) { // запрос на изменение аватара пользователя, метод PATCH
       return fetch(
         `${this._url}users/me/avatar`, 
