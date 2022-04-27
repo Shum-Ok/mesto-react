@@ -1,5 +1,5 @@
 // import components
-import React from 'react'
+import { useState, useEffect } from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -13,26 +13,19 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false)
-  const [isImageCardPopupOpen, setIsImageCardPopupOpen] = React.useState(false)
-  const [selectedCard, setSelectedCard] = React.useState({})
-  const [currentUser, setCurrentUser] = React.useState({})
-  const [cards, setCards] = React.useState([])
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
+  const [isImageCardPopupOpen, setIsImageCardPopupOpen] = useState(false)
+  const [selectedCard, setSelectedCard] = useState({})
+  const [currentUser, setCurrentUser] = useState({})
+  const [cards, setCards] = useState([])
 
-  React.useEffect(() => {
-    api.getInitialCards()
-      .then(res => {
-        setCards(res)
-      })
-      .catch(err => console.log(err))
-  }, [])
-
-  React.useEffect(() => {
-    api.getUser()
-      .then(res => {
-        setCurrentUser(res)
+  useEffect(() => {
+    api.getAllData()
+      .then(([data, user]) => {
+        setCards(data)
+        setCurrentUser(user)
       })
       .catch(err => console.log(err))
   }, [])
